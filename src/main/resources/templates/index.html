@@ -6,10 +6,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+	<!-- includeする方のclassはHTML出力される。 -->
+	<div class="include8" th:include="header :: frag_header8">
+		＃ここはインクルードされるため、HTMLには出力されません。＃
+	</div>
 	<h1 th:text="#{content.message}"></h1>
 	<pre th:text="${msg}"><!-- 値が入っていてもmsgに上書きされる。 --></pre>
 	<p>カウンター：<span th:text="${counter}">99999</span></p>
 	<p>カウンター（インライン）：<span th:inline="text">[[${counter}]]</span></p>
+	<p>２倍カウンター：<span th:text="${counter2}"></span></p>
 	
 	<!-- 条件式 -->
 	<p>【条件式 if / unless 】偶奇：

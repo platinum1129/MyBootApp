@@ -2,6 +2,8 @@ package jp.co.corerd.springboot;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import service.HelloService;
+
 @Controller // VIEW層を使ったやり取りをするためのController　return値がテンプレートファイル名となる。
 			// pom.xmlで、spring-boot-starter-thymeleafを設定してあるため、
 			// 「名前でテンプレートが自動的にロードされる」
+@ComponentScan("service")
 public class HelloController {
 	
 	private int counter = 0;
+	
+	@Autowired
+	private HelloService helloSv;
 
 	@RequestMapping("/")
 	public String index() {
@@ -42,6 +50,7 @@ public class HelloController {
 		data.add(new String[] {"かかか", "ききき", "くくく"});
 		data.add(new String[] {"さささ", "ししし", "すすす"});
 		mav.addObject("data", data);
+		mav.addObject("counter2", helloSv.add(counter, counter));
 		mav.addObject("counter", counter++);
 		
 		return mav;
