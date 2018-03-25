@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<title th:text="#{content.title}"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 th:text="#{content.message}"></h1>
+	<pre th:text="${msg}"><!-- 値が入っていてもmsgに上書きされる。 --></pre>
+	
+	<table th:object="${object}">
+		<tr><th>ID</th><td th:text="*{id}"></td></tr>
+		<tr><th>NAME</th><td th:text="*{name}"></td></tr>
+		<tr><th>MAIL</th><td th:text="*{address}"></td></tr>
+	</table>
+	
+	<div th:object="${object}">
+		<!-- リテラル置換（| テキストの内容 |） -->
+		<p th:text="|私の名前は *{name} です。 メールアドレス：*{address}|"></p>
+		<!-- utext（アンエスケープ） -->
+		<p th:utext="*{htmlText}"></p>
+	</div>
+
+
+</body>
+</html>
