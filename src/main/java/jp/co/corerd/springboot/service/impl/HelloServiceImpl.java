@@ -1,8 +1,8 @@
-package service.impl;
+package jp.co.corerd.springboot.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import service.HelloService;
+import jp.co.corerd.springboot.service.HelloService;
 
 @Service
 public class HelloServiceImpl implements HelloService {
