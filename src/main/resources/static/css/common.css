@@ -15,3 +15,11 @@ th {
 	background-color:#BBBBBB;
 	border: solid 1px #000000;
 }
+textarea[readonly] {
+	border: 0px;
+	resize: none;
+	background-color:transparent;
+}
+.err {
+	color:red;
+}

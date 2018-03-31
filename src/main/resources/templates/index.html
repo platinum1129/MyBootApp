@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-	<title th:text="#{content.title}"></title>
+	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../css/common.css" rel="stylesheet"></link>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	
+	<title th:text="#{content.title}"></title>
 </head>
 <body>
 	<!-- includeする方のclassはHTML出力される。 -->
-	<div class="include8" th:include="header :: frag_header8">
+	<div class="header" th:include="header :: frag_header8">
 		＃ここはインクルードされるため、HTMLには出力されません。＃
 	</div>
+	
+	<table>
+		<tr>
+			<th>DBアクセス検証</th>
+			<td><a href="/repo">repo</a>
+		</tr>
+	</table>
 	<h1 th:text="#{content.message}"></h1>
 	<pre th:text="${msg}"><!-- 値が入っていてもmsgに上書きされる。 --></pre>
+	
 	<p>カウンター：<span th:text="${counter}">99999</span></p>
-	<p>カウンター（インライン）：<span th:inline="text">[[${counter}]]</span></p>
-	<p>２倍カウンター：<span th:text="${counter2}"></span></p>
+	<!-- こうでもよい<span th:inline="text">[[${counter}]]</span> -->
 	
 	<!-- 条件式 -->
 	<p>【条件式 if / unless 】偶奇：
@@ -76,6 +87,14 @@
 				<option value="3">Windows Phone</option>
 			</select>
 		</div>
+		<div><!-- enumを使ったSELECTタグの指定方法 -->
+			<select id="enum" name="enum">
+				<option
+					th:each="t : ${T(jp.co.corerd.springboot.type.DeviceType).values()}"
+					th:value="${t.name()}" th:text="${t.toString()}"></option>
+			</select>
+		</div>
+		
 		<input type="submit" value="click" />
 	</form>
 </body>
