@@ -18,13 +18,14 @@ import jp.co.corerd.springboot.service.HelloService;
 @ComponentScan("service")
 public class HelloController extends BaseController {
 	
-	private int counter = 0;
-	private static String HTML_NAME = "index";
+	private static int counter = 0;
+	private String text2 = "";
+	private static String HTML_NAME = "hello";
 	
 	@Autowired
 	private HelloService helloSv;
 
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/hello", method=RequestMethod.GET)
 	public ModelAndView index(ModelAndView mav) {
 		mav.setViewName(HTML_NAME);
 		mav.addObject("msg", "フォームを送信してください。");
@@ -40,7 +41,7 @@ public class HelloController extends BaseController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.POST)
+	@RequestMapping(value="/hello", method=RequestMethod.POST)
 	public ModelAndView send(
 			@RequestParam(value="text1", required=true) String text1,
 			@RequestParam(value="check1", required=false) boolean check1,
@@ -48,6 +49,16 @@ public class HelloController extends BaseController {
 			@RequestParam(value="select1", required=false) String select1,
 			@RequestParam(value="select2", required=false) String select2,
 			ModelAndView mav) {
+		
+		log("S");
+		text2 = text1;
+		// スリープ5秒
+		for (int i = 0; i < 5000; i++) {
+			counter++;
+			sleep(1);
+		}
+		log("E");
+		
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(" text1:").append(text1);
@@ -64,6 +75,7 @@ public class HelloController extends BaseController {
 		
 		mav.addObject("msg", sb.toString());
 		mav.addObject("counter", counter++);
+		mav.addObject("text2", text2);
 		mav.setViewName(HTML_NAME);
 		return mav;
 	}

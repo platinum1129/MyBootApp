@@ -11,91 +11,19 @@
 </head>
 <body>
 	<!-- includeする方のclassはHTML出力される。 -->
-	<div class="header" th:include="header :: frag_header8">
+	<div class="header" th:include="header :: frag_header">
 		＃ここはインクルードされるため、HTMLには出力されません。＃
 	</div>
 	
 	<table>
 		<tr>
-			<th>DBアクセス検証</th>
-			<td><a href="/repo">repo</a>
+			<th style="width:150px;">DBアクセス検証</th>
+			<td style="width:150px;"><a href="/repo">/repo</a>
 		</tr>
-	</table>
-	<h1 th:text="#{content.message}"></h1>
-	<pre th:text="${msg}"><!-- 値が入っていてもmsgに上書きされる。 --></pre>
-	
-	<p>カウンター：<span th:text="${counter}">99999</span></p>
-	<!-- こうでもよい<span th:inline="text">[[${counter}]]</span> -->
-	
-	<!-- 条件式 -->
-	<p>【条件式 if / unless 】偶奇：
-		<span th:if    ="${counter} % 2 eq 0">偶</span>
-		<span th:unless="${counter} % 2 eq 0">奇</span>
-	</p>
-	<p>【条件式 switch】漢字：
-		<span th:switch="${counter}">
-			<span th:case="0">零</span>
-			<span th:case="1">壱</span>
-			<span th:case="2">弐</span>
-			<span th:case="3">参</span>
-			<span th:case="4">肆</span>
-			<span th:case="5">伍</span>
-			<span th:case="*">…</span>
-		</span>
-	</p>
-	
-	<!-- 繰り返し -->
-	<table style="border: 1px solid black">
 		<tr>
-			<th colspan="3">繰り返し検証</th>
-		</tr>
-		<tr th:each="obj:${data}">
-			<td th:text="${obj[0]}"></td>
-			<td th:text="${obj[1]}"></td>
-			<td th:text="${obj[2]}"></td>
+			<th>その他検証</th>
+			<td><a href="/hello">/hello</a>
 		</tr>
 	</table>
-	
-	
-	<form method="post" action="/?id=0">
-		<div>
-			<input type="text" id="text1" name="text1" />
-		</div>
-		<div>
-			<input type="checkbox" id="check1" name="check1" />
-			<label for="check1">チェック</label>
-		</div>
-		<div>
-			<input type="radio" id="radioA" name="radio1" value="male" />
-			<label for="radioA">男性</label>
-		</div>
-		<div>
-			<input type="radio" id="radioB" name="radio1" value="female" />
-			<label for="radioB">女性</label>
-		</div>
-		<div>
-			<select id="select1" name="select1">
-				<option value="1">Windows</option>
-				<option value="2">Mac</option>
-				<option value="3">Linux</option>
-			</select>
-		</div>
-		<div>
-			<select id="select2" name="select2">
-				<option value="1">Android</option>
-				<option value="2">iPhone</option>
-				<option value="3">Windows Phone</option>
-			</select>
-		</div>
-		<div><!-- enumを使ったSELECTタグの指定方法 -->
-			<select id="enum" name="enum">
-				<option
-					th:each="t : ${T(jp.co.corerd.springboot.type.DeviceType).values()}"
-					th:value="${t.name()}" th:text="${t.toString()}"></option>
-			</select>
-		</div>
-		
-		<input type="submit" value="click" />
-	</form>
 </body>
 </html>

@@ -4,6 +4,18 @@ package jp.co.corerd.springboot.controller;
  * 共通処理用コントローラー
  */
 public class BaseController {
+
+	/**
+	 * スリープ処理
+	 * @param mills 待機ミリ秒
+	 */
+	protected void sleep(long mills) {
+		try {
+			Thread.sleep(mills);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 	/**
 	 * ログ出力

@@ -107,6 +107,30 @@ public class RepoController extends BaseController {
 	}
 	
 	/**
+	 * 「検索」ボタン
+	 */
+	@RequestMapping(
+			value="/repo",
+			params="search", // Submitボタンのname
+			method=RequestMethod.POST)
+	@Transactional(readOnly=true)
+	public ModelAndView doSearch(
+			@ModelAttribute("formModel") User user,
+			BindingResult result, // Validation結果
+			ModelAndView mav) {
+		
+		log("doSearch - S", user, result);
+		
+		Iterable<User> list = repository.findByName(user.getName());
+		mav.addObject("datalist", list);
+		mav.setViewName(HTML_NAME);
+
+		log("doSearch - E");
+		
+		return mav;
+	}
+	
+	/**
 	 * <pre>
 	 * 登録／更新ボタン
 	 * ・Validated → Validation設定

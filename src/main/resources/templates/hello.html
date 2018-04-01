@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../css/common.css" rel="stylesheet"></link>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	
+	<title th:text="#{content.title}"></title>
+</head>
+<body>
+	<!-- includeする方のclassはHTML出力される。 -->
+	<div class="header" th:include="header :: frag_header">
+		＃ここはインクルードされるため、HTMLには出力されません。＃
+	</div>
+	
+	<pre th:text="${msg}"><!-- 値が入っていてもmsgに上書きされる。 --></pre>
+	
+	<form method="post" action="/hello">
+	
+		<p>カウンター：<span th:text="${counter}">99999</span></p>
+		<!-- こうでもよい<span th:inline="text">[[${counter}]]</span> -->
+		
+		<!-- 条件式 -->
+		<p>【条件式 if / unless 】偶奇：
+			<span th:if    ="${counter} % 2 eq 0">偶</span>
+			<span th:unless="${counter} % 2 eq 0">奇</span>
+		</p>
+		<p>【条件式 switch】漢字：
+			<span th:switch="${counter}">
+				<span th:case="0">零</span>
+				<span th:case="1">壱</span>
+				<span th:case="2">弐</span>
+				<span th:case="3">参</span>
+				<span th:case="4">肆</span>
+				<span th:case="5">伍</span>
+				<span th:case="*">…</span>
+			</span>
+		</p>
+		
+		<!-- 繰り返し -->
+		<table style="border: 1px solid black">
+			<tr>
+				<th colspan="3">繰り返し検証</th>
+			</tr>
+			<tr th:each="obj:${data}">
+				<td th:text="${obj[0]}"></td>
+				<td th:text="${obj[1]}"></td>
+				<td th:text="${obj[2]}"></td>
+			</tr>
+		</table>
+		<hr/>
+		<table>
+			<col style="width:200px;" />
+			<col style="width:200px;" />
+			<tr>
+				<th>テキストボックス</th>
+				<td>
+					<input type="text" id="text1" name="text1" /><br/>
+					<span>↓送信</span><br/>
+					<input type="text" id="text2" name="text2" disabled th:value="${text2}" />
+				</td>
+			</tr>
+			<tr>
+				<th>チェックボックス</th>
+				<td>
+					<input type="checkbox" id="check1" name="check1" value="1" />
+					<label for="check1">チェック</label><br/>
+					<input type="checkbox" id="check2" name="check2" value="1" disabled />
+					<label for="check2">disabled(off)</label><br/>
+					<input type="checkbox" id="check3" name="check3" value="1" disabled checked/>
+					<label for="check3">disabled(on)</label><br/>
+				</td>
+			</tr>
+			<tr>
+				<th>ラジオ</th>
+				<td>
+					<input type="radio" id="radioA" name="radio1" value="male" />
+					<label for="radioA">男性</label>
+					<input type="radio" id="radioB" name="radio1" value="female" />
+					<label for="radioB">女性</label>
+				</td>
+			</tr>
+			<tr>
+				<th>ドロップダウン</th>
+				<td>
+					<!-- 通常 -->
+					<select id="select1" name="select1">
+						<option value="1">Windows</option>
+						<option value="2">Mac</option>
+						<option value="3">Linux</option>
+					</select>
+					<!-- enumを使ったSELECTタグの指定方法 -->
+					<select id="enum" name="enum">
+						<option
+							th:each="t : ${T(jp.co.corerd.springboot.type.DeviceType).values()}"
+							th:value="${t.name()}" th:text="${t.toString()}"></option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		<input type="submit" value="送信" />
+	</form>
+</body>
+</html>

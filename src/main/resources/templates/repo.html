@@ -70,7 +70,7 @@
 			<tr>
 				<th><label for="memo">メモ</label></th>
 				<td>
-					<textarea rows="5" cols="20" name="memo" th:value="*{memo}" /></textarea>
+					<textarea rows="5" cols="20" name="memo" th:field="*{memo}" /></textarea>
 					<div th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" th:errorclass="err"></div>
 				</td>
 			</tr>
@@ -79,8 +79,10 @@
 				<td><input type="submit" name="update" value="登録／更新" /></td>
 			</tr>
 		</table>
-	</form>
 	<hr/>
+		<div><input type="submit" name="search" value="名前で部分一致検索" /></div>
+	<hr/>
+	</form>
 	<table id="table1">
 		<tr>
 			<th style="width:100px;">ID</th>
