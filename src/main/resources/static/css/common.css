@@ -1,5 +1,10 @@
 @charset "UTF-8";
-
+* {
+	font-family: 'ＭＳ ゴシック';
+}
+body {
+	background-color: #BBBBFF;
+}
 pre {
 	border: solid 3px #DDDDDD; padding: 10px;
 }
@@ -12,14 +17,19 @@ td {
 	border: solid 1px #000000;
 }
 th {
-	background-color:#BBBBBB;
+	background-color:#CCCCCC;
 	border: solid 1px #000000;
+}
+input[readonly] {
+	border: 0px;
+	background-color:transparent;
 }
 textarea[readonly] {
 	border: 0px;
 	resize: none;
 	background-color:transparent;
 }
+
 .err {
 	color:red;
 }
