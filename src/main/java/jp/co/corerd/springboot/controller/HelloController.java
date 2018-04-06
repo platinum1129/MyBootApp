@@ -28,7 +28,7 @@ public class HelloController extends BaseController {
 	@RequestMapping(value="/hello", method=RequestMethod.GET)
 	public ModelAndView index(ModelAndView mav) {
 		mav.setViewName(HTML_NAME);
-		mav.addObject("msg", "フォームを送信してください。");
+		mav.addObject("msg", "フォームを送信してください。 ");
 		
 		ArrayList<String[]> data = new ArrayList<>();
 		data.add(new String[] {"あああ", "いいい", "ううう"});

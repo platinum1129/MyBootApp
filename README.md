@@ -1,2 +1,2 @@
 # MyBootApp
-SpringBoot検証用プロジェクト
+SpringBoot検証用プロジェクト 
