@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"></link>
+	<script type="text/javascript" src="../static/js/common.js" th:src="@{/js/common.js}" ></script>
+	
+	<title>static検証</title>
+</head>
+<body> 
+<form method="post" action="/static_login" th:object="${formModel}">
+	<div style="height: 300px; width:800px; margin:auto; padding-top:100px;">
+		<table style="margin:auto;">
+			<col style="width:150px;">
+			<col style="width:300px;">
+			<tr style="height:50px;">
+				<th>ユーザーID<br/>(勤務票No)</th>
+				<td><input type="text" id="idUser" name="idUser" /></td>
+			</tr>
+			<tr style="height:50px;">
+				<th>パスワード</th>
+				<td>
+					<input type="password" id="idPass" name="idPass"/>
+					<input type="submit" value="ログイン"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+</body>
+</html>

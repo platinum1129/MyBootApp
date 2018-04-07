@@ -3,11 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="../css/common.css" rel="stylesheet"></link>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript" src="../js/common.js"></script>
+	<!-- hrefはhtmlを直接openで参照。th:hrefはthymeleaf（サーバー起動でアクセス）時に参照 -->
+	<link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"></link>
+	<script type="text/javascript" src="../static/js/common.js" th:src="@{/js/common.js}" ></script>
 	
-	<title th:text="#{content.title}"></title>
+	<title th:text="#{content.title}"></title> 
 </head>
 <body>
 	<!-- includeする方のclassはHTML出力される。 -->
@@ -18,11 +19,15 @@
 	<table>
 		<tr>
 			<th style="width:150px;">DBアクセス検証</th>
-			<td style="width:150px;"><a href="/repo">/repo</a>
+			<td style="width:150px;"><a href="repo.html" th:href="@{/repo}">/repo</a>
+		</tr>
+		<tr>
+			<th>static検証</th>
+			<td><a href="static_login.html" th:href="@{/static_login}">/static_login</a>
 		</tr>
 		<tr>
 			<th>その他検証</th>
-			<td><a href="/hello">/hello</a>
+			<td><a href="hello.html" th:href="@{/hello}">/hello</a>
 		</tr>
 	</table>
 </body>

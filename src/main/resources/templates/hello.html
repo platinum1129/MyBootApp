@@ -3,14 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="../css/common.css" rel="stylesheet"></link>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript" src="../js/common.js"></script>
+	<!-- hrefはhtmlを直接openで参照。th:hrefはthymeleaf（サーバー起動でアクセス）時に参照 -->
+	<link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"></link>
+	<script type="text/javascript" src="../static/js/common.js" th:src="@{/js/common.js}" ></script>
 	
-	<title th:text="#{content.title}"></title>
+	<title th:text="#{content.title}"></title> 
 </head>
 <body>
-	<!-- includeする方のclassはHTML出力される。 -->
+	<!-- includeする方のclassはHTML出力される。includeされる方のclassは出力されない。 -->
 	<div class="header" th:include="header :: frag_header">
 		＃ここはインクルードされるため、HTMLには出力されません。＃
 	</div>
