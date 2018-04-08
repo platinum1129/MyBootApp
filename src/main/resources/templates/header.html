@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- fragmentは1ページに複数個定義できる。このdivタグ自体はHTML出力されないので、class指定などは不要。 -->
+<!--
+	fragmentは1ページに複数個定義できる
+	th:fragmentが指定されたdivタグ自体はHTML出力されない
+-->
 <div th:fragment="frag_header">
-	<h1 th:text="#{content.header}" style="background-color:#BBBBBB"></h1>
+	<h1 th:text="#{content.header}"></h1>
 </div>
-<div class="frag2" th:fragment="frag_header2">
+<div th:fragment="frag_header2">
 	<h1 th:text="#{content.header}" style="background-color:#222222"></h1>
 </div>
-<div class="frag4" th:fragment="frag_header4">
+<div th:fragment="frag_header4">
 	<h1 th:text="#{content.header}" style="background-color:#444444"></h1>
 </div>
-<div class="frag6" th:fragment="frag_header6">
+<div th:fragment="frag_header6">
 	<h1 th:text="#{content.header}" style="background-color:#666666"></h1>
 </div>
-<div class="frag8" th:fragment="frag_header8">
+<div th:fragment="frag_header8">
 	<h1 th:text="#{content.header}" style="background-color:#888888"></h1>
 </div>

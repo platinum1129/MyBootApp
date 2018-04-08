@@ -2,7 +2,7 @@ package jp.co.corerd.springboot.controller;
 
 import java.util.HashMap;
 
-import org.springframework.stereotype.Controller; 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +24,6 @@ public class StaticController extends BaseController {
 			@RequestParam(value="idUser", required=false) String idUser,
 			@RequestParam(value="idPass", required=false) String idPass,
 			ModelAndView mav) {
-		mav.setViewName("static_sheet");
 		
 		// Singleton設計のControllerに定義されている
 		// インスタンス変数（idUserInstance）に、パラメータを代入し、
@@ -40,16 +39,56 @@ public class StaticController extends BaseController {
 		// ユーザー名は、インスタンス変数の値からユーザー名を検索して取得
 		mav.addObject("nmUser", users.get(idUserInstance)); 
 		
+		// カウンター
+		mav.addObject("counter", counter);
+		
+		mav.setViewName("static_sheet");
 		return mav;
 	}
 	
-	@RequestMapping(value="/static_sheet", method=RequestMethod.POST)
+	@RequestMapping(value="/static_sheet",
+			params="logout", // Submitボタンのname
+			method=RequestMethod.POST)
 	public ModelAndView logout(ModelAndView mav) {
 		mav.setViewName("static_login");
 		return mav;
 	}
 	
-	
+	int counter = 0;
+	@RequestMapping(value="/static_sheet",
+			params="count", // Submitボタンのname
+			method=RequestMethod.POST)
+	public ModelAndView count(ModelAndView mav,
+		@RequestParam(value="idUser", required=false) String idUser,
+		@RequestParam(value="nmUser", required=false) String nmUser) {
+		
+		for (int i = 0; i < 1000; i++) {
+			sleep(1);
+			counter = counter + 1;
+		}
+		
+		mav.addObject("idUser", idUser);
+		mav.addObject("nmUser", nmUser);
+		mav.addObject("counter", counter);
+		
+		mav.setViewName("static_sheet");
+		return mav;
+	}
+	@RequestMapping(value="/static_sheet",
+			params="clear", // Submitボタンのname
+			method=RequestMethod.POST)
+	public ModelAndView clear(ModelAndView mav,
+		@RequestParam(value="idUser", required=false) String idUser,
+		@RequestParam(value="nmUser", required=false) String nmUser) {
+		
+		counter = 0;
+		mav.addObject("idUser", idUser);
+		mav.addObject("nmUser", nmUser);
+		mav.addObject("counter", counter);
+		
+		mav.setViewName("static_sheet");
+		return mav;
+	}
 	
 	// ユーザー情報作成
 	private static HashMap<String, String> users = new HashMap<>();

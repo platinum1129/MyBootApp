@@ -24,6 +24,9 @@ input[readonly] {
 	border: 0px;
 	background-color:transparent;
 }
+input[submit] {
+	margin:5px;
+}
 textarea[readonly] {
 	border: 0px;
 	resize: none;

@@ -6,8 +6,7 @@
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet"></link>
 	<script type="text/javascript" src="../static/js/common.js" th:src="@{/js/common.js}" ></script>
-	
-	<title>static検証</title>
+	<title>SingletonSheet</title>
 </head>
 <body> 
 <form method="post" action="/static_sheet" th:object="${formModel}">
@@ -17,17 +16,26 @@
 			<col style="width:300px;">
 			<tr style="height:50px;">
 				<th>ユーザーID</th>
-				<td><input type="text" id="idUser" name="idUser" value="crd00068" readonly="readonly" th:value="${idUser}" /></td>
+				<td><input type="text" name="idUser" value="crd00068" readonly="readonly" th:value="${idUser}" /></td>
 			</tr>
 			<tr style="height:50px;">
 				<th>ユーザー名</th>
 				<td>
-					<input type="text" id="nmUser" name="nmUser" value="matsumoto" readonly="readonly" th:value="${nmUser}" />
-					<input type="submit" value="ログアウト"/>
+					<input type="text" name="nmUser" value="matsumoto" readonly="readonly" th:value="${nmUser}" />
+					<input type="submit" name="logout" value="ログアウト"/>
+				</td>
+			</tr>
+			<tr style="height:50px;">
+				<th>カウンター</th>
+				<td>
+					<input type="text" name="counter" readonly="readonly" th:value="${counter}" />
+					<input type="submit" name="count" value="＋1,000"/>
+					<input type="submit" name="clear" value="クリア"/>
 				</td>
 			</tr>
 		</table>
 	</div>
+	
 </form>
 </body>
 </html>
