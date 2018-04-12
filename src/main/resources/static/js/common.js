@@ -3,6 +3,10 @@ $(function() {
 		window.location.href = '/';
 	});
 	
+	$('#users').on('change', function(event) {
+		$('#idUser').val(this.value);
+	});
+	
 	/**
 	 * 行削除イベント
 	 */

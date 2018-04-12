@@ -5,6 +5,10 @@
 body {
 	background-color: #BBBBFF; 
 }
+div.mainLayout {
+	width: 100%;
+	padding-top: 100px;
+}
 pre {
 	border: solid 3px #DDDDDD; padding: 10px;
 }
@@ -20,6 +24,12 @@ th {
 	background-color:#CCCCCC;
 	border: solid 1px #000000;
 }
+table.staticTable th {
+	height:50px;
+}
+table.staticTable {
+	margin:auto;
+}
 input[readonly] {
 	border: 0px;
 	background-color:transparent;
@@ -32,7 +42,9 @@ textarea[readonly] {
 	resize: none;
 	background-color:transparent;
 }
-
+div.header {
+	cursor:pointer;
+}
 .err {
 	color:red;
 }

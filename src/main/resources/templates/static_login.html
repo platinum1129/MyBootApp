@@ -10,23 +10,32 @@
 </head>
 <body> 
 <form method="post" action="/static_login" th:object="${formModel}">
-	<div style="height: 300px; width:800px; margin:auto; padding-top:100px;">
-		<table style="margin:auto;">
-			<col style="width:150px;">
-			<col style="width:300px;">
-			<tr style="height:50px;">
-				<th>ユーザーID<br/>(勤務票No)</th>
-				<td><input type="text" id="idUser" name="idUser" /></td>
-			</tr>
-			<tr style="height:50px;">
-				<th>パスワード</th>
-				<td>
-					<input type="password" id="idPass" name="idPass"/>
-					<input type="submit" value="ログイン"/>
-				</td>
-			</tr>
-		</table>
-	</div>
+<div class="mainLayout">
+	<table class="staticTable">
+		<col style="width:150px;">
+		<col style="width:300px;">
+		<tr>
+			<th>ユーザーID<br/>(勤務票No)</th>
+			<td>
+				<input type="text" id="idUser" name="idUser" />
+				<select name="users" id="users">
+					<option th:each="user:${users}"
+						th:value="${user.id}"
+						th:selected="${user.id == id}"
+						th:inline="text">[[${user.id}]]_[[${user.name}]]</option>				
+				</select>
+			</td>
+			
+		</tr>
+		<tr>
+			<th>パスワード</th>
+			<td>
+				<input type="password" id="idPass" name="idPass"/>
+				<input type="submit" value="ログイン"/>
+			</td>
+		</tr>
+	</table>
+</div>
 </form>
 </body>
 </html>
